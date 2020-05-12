@@ -1,19 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, Image } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+class Fruit extends Component {
+  render() {
+    return (
+      <View style={{alignItems: 'center', marginTop: 50}}>
+        <Text>Hello {this.props.name}!</Text>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default class Banan extends Component {
+  render() {
+      let pic = {
+        uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+      };
+      return (
+        <View>
+        <Image source = {pic} style = {{width: 193, height: 110}}></Image>
+        <Fruit name='banana' />
+        <Fruit name='apple' />
+        <Fruit name='orange' />
+        <View style={{ backgourndColor: "blue", flex: 0.3}} />
+        </View>
+      );
+  }
+}
+
