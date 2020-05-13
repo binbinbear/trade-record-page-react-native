@@ -1,30 +1,50 @@
 import React, {Component} from 'react';
-import {View, Text, Image } from 'react-native';
+import {View, Text, Image, StyleSheet, sectionList } from 'react-native';
 
-class Fruit extends Component {
-  render() {
+export default class Transaction extends Component {
+  render () {
     return (
-      <View style={{alignItems: 'center', marginTop: 50}}>
-        <Text>Hello {this.props.name}!</Text>
-      </View>
-    );
+      <Header ></Header>
+    )
   }
 }
 
-export default class Banan extends Component {
-  render() {
-      let pic = {
-        uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-      };
-      return (
-        <View>
-        <Image source = {pic} style = {{width: 193, height: 110}}></Image>
-        <Fruit name='banana' />
-        <Fruit name='apple' />
-        <Fruit name='orange' />
-        <View style={{ backgourndColor: "blue", flex: 0.3}} />
-        </View>
-      );
+class Header extends Component {
+  render () {
+    return (
+      <View  style = {StyleSheet.container}>
+        <Text>交易记录</Text>
+      </View>
+    )
   }
 }
+
+class RecordItem extends Component {
+
+   render () {
+    const {category, name} = this.props
+    return (
+        <SectionList></SectionList>
+     )
+   }
+
+}
+
+const styles = StyleSheet.create({
+    header: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      marginTop: 100,
+    },
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF'
+    }
+}
+)
+
 
