@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, SectionList, FlatList } from 'react-native';
+import {View, Text, Image, StyleSheet, SectionList, FlatList,ImageBackground } from 'react-native';
 
 export default class Transaction extends Component {
   render () {
@@ -12,9 +12,12 @@ export default class Transaction extends Component {
 class Header extends Component {
   render () {
     return (
-      <View  style = {StyleSheet.container}>
-        <Text>交易记录</Text>
-        <RecordItem></RecordItem>
+      <View>
+          <ImageBackground source={require('./img/white_backgroud.png')} style={styles.backgroup} imageStyle={{borderRadius:20}}></ImageBackground>
+          <View  style = {StyleSheet.container}>
+            <Text style = {styles.header} >交易记录</Text>
+            <RecordItem></RecordItem>
+          </View>
       </View>
     )
   }
@@ -60,7 +63,7 @@ class RecordItem extends Component {
     var txt = info.section.month;
     return (
       <View  style={{borderTopWidth: 5, borderColor: 'white'}}>
-      <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', color: 'black', fontSize: 30 }}>
+      <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', color: 'black', fontSize: 15 }}>
         {txt}
       </Text>
       </View>
@@ -83,16 +86,16 @@ class RecordItem extends Component {
 
    render () {
     var sections = [
-      { month: "2017.10", data: [{ date: "07", week: "Thus",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
-      { month: "2017.09", data: [{ date: "07", week: "Thus",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
-      { month: "2017.08", data: [{ date: "07", week: "Thus",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.10", data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.09", data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.08", data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
     ];
     return (
         <SectionList 
         renderSectionHeader={this._dateTransactionGroup}
         renderItem={this._renderItem}
         sections={sections}
-        ListHeaderComponent={() => <View style={{ backgroundColor: '#25B960', alignItems: 'center', height: 30 }}><Text style={{ fontSize: 18, color: '#ffffff' }}>交易记录</Text></View>}>
+        //ListHeaderComponent={() => <View style={{ backgroundColor: '#25B960', alignItems: 'center', height: 30 }}><Text style={{ fontSize: 18, color: '#ffffff' }}>交易记录</Text></View>}>
         ListFooterComponent={() => <View style={{ backgroundColor: '#25B960', alignItems: 'center', height: 30 }}><Text style={{ fontSize: 18, color: '#ffffff' }}>完</Text></View>}>
         </SectionList>
      )
@@ -102,11 +105,11 @@ class RecordItem extends Component {
 
 const styles = StyleSheet.create({
     header: {
-      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       textAlign: 'center',
-      marginTop: 100,
+      fontSize:20,
+      textAlignVertical:'center'
     },
     container: {
       flex: 1,
@@ -118,7 +121,13 @@ const styles = StyleSheet.create({
       left: 1,
       width: 50,
       height: 50
-    }
+    },
+    backgroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius:20,
+    backgroundColor: "#FFFC00"
+  }
 }
 )
 
