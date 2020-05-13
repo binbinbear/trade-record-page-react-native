@@ -21,29 +21,35 @@ class Header extends Component {
 }
 
 class RecordItem extends Component {
-  _renderItem = (info) => {
-    var txt = '  ' + info.item.title;
-    return <Text
-      style={{ height: 60, textAlignVertical: 'center', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>{txt}</Text>
-  }
  
-  _sectionComp = (info) => {
-    var txt = info.section.key;
-    return <Text
-      style={{ height: 50, textAlign: 'center', textAlignVertical: 'center', backgroundColor: '#9CEBBC', color: 'white', fontSize: 30 }}>{txt}</Text>
+  _dateTransactionGroup = (info) => {
+    var txt = info.section.date;
+    return (
+      <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', backgroundColor: '#white', color: 'black', fontSize: 30 }}>
+        {txt}
+      </Text>
+    ) 
+  }
+  _renderItem = (info) => {
+    var txt = '  ' + info.item.name;
+    return (
+      <Text style={{ height: 60, textAlignVertical: 'center', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>
+        {txt}
+      </Text>
+    )
   }
 
    render () {
     const {category, name} = this.props
     var sections = [
-      { key: "A", data: [{ title: "阿童木" }, { title: "阿玛尼" }, { title: "爱多多" }] },
-      { key: "B", data: [{ title: "表哥" }, { title: "贝贝" }, { title: "表弟" }, { title: "表姐" }, { title: "表叔" }] },
-      { key: "C", data: [{ title: "成吉思汗" }, { title: "超市快递" }] },
-      { key: "W", data: [{ title: "王磊" }, { title: "王者荣耀" }, { title: "往事不能回味" },{ title: "王小磊" }, { title: "王中磊" }, { title: "王大磊" }] },
+      { date: "2017.10", data: [{ name: "阿童木" }, { name: "阿玛尼" },   { name: "爱多多" }] },
+      { date: "2017.9",  data: [{ name: "表哥" },   { name: "贝贝" },    { name: "表弟" }, { name: "表姐" }, { name: "表叔" }] },
+      { date: "2017.8",  data: [{ name: "成吉思汗"}, { name: "超市快递" }]},
+      { date: "2017.7",  data: [{ name: "王磊" },   { name: "王者荣耀" }, { name: "往事不能回味" },{ name: "王小磊" }, { name: "王中磊" }, { title: "王大磊" }] },
     ];
     return (
         <SectionList 
-        renderSectionHeader={this._sectionComp}
+        renderSectionHeader={this._dateTransactionGroup}
         renderItem={this._renderItem}
         sections={sections}
         ListHeaderComponent={() => <View style={{ backgroundColor: '#25B960', alignItems: 'center', height: 30 }}><Text style={{ fontSize: 18, color: '#ffffff' }}>交易记录</Text></View>}>
