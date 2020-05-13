@@ -29,9 +29,11 @@ class RecordItem extends Component {
   _dateTransactionGroup = (info) => {
     var txt = info.section.date;
     return (
-      <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', backgroundColor: '#white', color: 'black', fontSize: 30 }}>
+      <View  style={{borderTopWidth: 5, borderColor: 'white'}}>
+      <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', color: 'black', fontSize: 30 }}>
         {txt}
       </Text>
+      </View>
     ) 
   }
   _renderItem = (info) => {
@@ -43,10 +45,10 @@ class RecordItem extends Component {
           <View style={{ flex: 1, flexDirection: 'row' }}>
               <Image source={pic} style={styles.image}></Image>
               <View>
-                  <Text style={{ height: 40, textAlignVertical: 'right', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>
+                  <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
                     {tradeType}
                   </Text>
-                  <Text style={{ height: 40, textAlignVertical: 'center', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>
+                  <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
                     {tradeName}
                   </Text>
               </View>
