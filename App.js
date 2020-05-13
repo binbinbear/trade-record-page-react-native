@@ -21,6 +21,10 @@ class Header extends Component {
 }
 
 class RecordItem extends Component {
+
+  state = {
+    imgPath: "./img/"
+  }
  
   _dateTransactionGroup = (info) => {
     var txt = info.section.date;
@@ -31,21 +35,31 @@ class RecordItem extends Component {
     ) 
   }
   _renderItem = (info) => {
-    var txt = '  ' + info.item.name;
+    var tradeType = info.item.category;
+    var tradeName = info.item.name;
+    var pic = info.item.pic;
     return (
-      <Text style={{ height: 60, textAlignVertical: 'center', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>
-        {txt}
-      </Text>
+      <View>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Image source={pic} style={styles.image}></Image>
+              <View>
+                  <Text style={{ height: 40, textAlignVertical: 'right', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>
+                    {tradeType}
+                  </Text>
+                  <Text style={{ height: 40, textAlignVertical: 'center', backgroundColor: "#ffffff", color: '#5C5C5C', fontSize: 15 }}>
+                    {tradeName}
+                  </Text>
+              </View>
+          </View>
+      </View>
     )
   }
 
    render () {
-    const {category, name} = this.props
     var sections = [
-      { date: "2017.10", data: [{ name: "阿童木" }, { name: "阿玛尼" },   { name: "爱多多" }] },
-      { date: "2017.9",  data: [{ name: "表哥" },   { name: "贝贝" },    { name: "表弟" }, { name: "表姐" }, { name: "表叔" }] },
-      { date: "2017.8",  data: [{ name: "成吉思汗"}, { name: "超市快递" }]},
-      { date: "2017.7",  data: [{ name: "王磊" },   { name: "王者荣耀" }, { name: "往事不能回味" },{ name: "王小磊" }, { name: "王中磊" }, { title: "王大磊" }] },
+      { date: "2017.15", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
+      { date: "2017.14", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
+      { date: "2017.13", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
     ];
     return (
         <SectionList 
@@ -73,6 +87,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#F5FCFF'
+    },
+    image: {
+      left: 1,
+      width: 50,
+      height: 50
     }
 }
 )
