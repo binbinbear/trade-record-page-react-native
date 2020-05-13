@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, SectionList } from 'react-native';
+import {View, Text, Image, StyleSheet, SectionList, FlatList } from 'react-native';
 
 export default class Transaction extends Component {
   render () {
@@ -11,12 +11,47 @@ export default class Transaction extends Component {
 
 class Header extends Component {
   render () {
+    var d = [
+      {category: "黑猫警长2", name: "美国"},
+      {category: "我是特种兵",name: "中国"},
+      {category: "变形金刚2", name: "美国"},
+      {category: "流浪地球",  name: "中国"},
+    ];
+
     return (
       <View  style = {StyleSheet.container}>
         <Text>交易记录</Text>
         <RecordItem></RecordItem>
+        <ItemDetail data={d} />
       </View>
     )
+  }
+}
+
+class ItemDetail extends Component {
+
+  _renderItem = (info) => {
+    return (
+      <View>
+      <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
+      {info.item.category}
+      </Text>
+      <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
+      {info.item.name}
+      </Text>
+      </View>
+    )
+  }
+
+  render() {
+      return (
+          <View >
+              <FlatList
+                  data={this.props.data}
+                  renderItem={this._renderItem}
+              />
+          </View>
+      )
   }
 }
 
@@ -60,8 +95,8 @@ class RecordItem extends Component {
    render () {
     var sections = [
       { date: "2017.15", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
-      { date: "2017.14", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
-      { date: "2017.13", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
+      // { date: "2017.14", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
+      // { date: "2017.13", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
     ];
     return (
         <SectionList 
