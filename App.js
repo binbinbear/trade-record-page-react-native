@@ -11,18 +11,10 @@ export default class Transaction extends Component {
 
 class Header extends Component {
   render () {
-    var d = [
-      {category: "黑猫警长2", name: "美国"},
-      {category: "我是特种兵",name: "中国"},
-      {category: "变形金刚2", name: "美国"},
-      {category: "流浪地球",  name: "中国"},
-    ];
-
     return (
       <View  style = {StyleSheet.container}>
         <Text>交易记录</Text>
         <RecordItem></RecordItem>
-        <ItemDetail data={d} />
       </View>
     )
   }
@@ -32,13 +24,16 @@ class ItemDetail extends Component {
 
   _renderItem = (info) => {
     return (
-      <View>
-      <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
-      {info.item.category}
-      </Text>
-      <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
-      {info.item.name}
-      </Text>
+      <View  style={{ flex: 1, flexDirection: 'row'}} >
+        <Image source={info.item.pic} style={styles.image}></Image>
+        <View>
+           <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
+             {info.item.category}
+           </Text>
+           <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
+             {info.item.name}
+           </Text>
+        </View>
       </View>
     )
   }
@@ -62,7 +57,7 @@ class RecordItem extends Component {
   }
  
   _dateTransactionGroup = (info) => {
-    var txt = info.section.date;
+    var txt = info.section.month;
     return (
       <View  style={{borderTopWidth: 5, borderColor: 'white'}}>
       <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', color: 'black', fontSize: 30 }}>
@@ -72,31 +67,25 @@ class RecordItem extends Component {
     ) 
   }
   _renderItem = (info) => {
-    var tradeType = info.item.category;
-    var tradeName = info.item.name;
-    var pic = info.item.pic;
+    var date = info.item.date;
+    var week = info.item.week;
+    var details = info.item.details
     return (
-      <View>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Image source={pic} style={styles.image}></Image>
-              <View>
-                  <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
-                    {tradeType}
-                  </Text>
-                  <Text style={{ height: 40, textAlignVertical: 'center', color: '#5C5C5C', fontSize: 15 }}>
-                    {tradeName}
-                  </Text>
-              </View>
-          </View>
+      <View style={{ flex: 1, flexDirection: 'row'}}>
+          <View>
+            <Text>{date}</Text>
+            <Text>{week}</Text>
+          </View> 
+          <ItemDetail data={details} />
       </View>
     )
   }
 
    render () {
     var sections = [
-      { date: "2017.15", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
-      // { date: "2017.14", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
-      // { date: "2017.13", data: [{ category: "午餐", name: "汉堡王", pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')},   { category: "工资", name: "中国银联", pic: require('./img/money.png')}] },
+      { month: "2017.10", data: [{ date: "07", week: "Thus",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.09", data: [{ date: "07", week: "Thus",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.08", data: [{ date: "07", week: "Thus",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
     ];
     return (
         <SectionList 
