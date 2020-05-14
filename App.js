@@ -54,22 +54,31 @@ class ItemDetail extends Component {
 }
 
 class RecordItem extends Component {
-
-  state = {
-    imgPath: "./img/"
-  }
  
-  _dateTransactionGroup = (info) => {
-    var txt = info.section.month;
+  _monthTransaction = (info) => {
+    var month = info.section.month;
+    var totalExpense = info.section.totalExpense;
+    var totalIncome = info.section.totalIncome;
     return (
-      <View  style={{borderTopWidth: 5, borderColor: 'white'}}>
-      <Text style={{ height: 50, textAlign: 'left', textAlignVertical: 'center', color: 'black', fontSize: 15 }}>
-        {txt}
-      </Text>
+      <View style={{ flex: 1, flexDirection: 'row'}}>
+          <Text style={{ height: 50, flex: 1, textAlign: 'left', color: 'black', fontSize: 15 }}>
+            {month}
+          </Text>
+          <View style={{flexDirection: 'row', textAlign: 'right'}} >
+            <Text style={{ height: 50, color: 'green', fontSize: 15 }}>
+              {totalExpense}
+            </Text>
+            <Text style={{ height: 50, color: 'black', fontSize: 15 }}>
+              /
+            </Text>
+            <Text style={{ height: 50, color: 'orange', fontSize: 15 }}>
+              {totalIncome}
+            </Text>
+          </View>
       </View>
     ) 
   }
-  _renderItem = (info) => {
+  _tradeTransaction = (info) => {
     var date = info.item.date;
     var week = info.item.week;
     var details = info.item.details
@@ -86,14 +95,14 @@ class RecordItem extends Component {
 
    render () {
     var sections = [
-      { month: "2017.10", data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
-      { month: "2017.09", data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
-      { month: "2017.08", data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.10", totalExpense: 1000, totalIncome: 500, data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.10", totalExpense: 1000, totalIncome: 500, data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
+      { month: "2017.10", totalExpense: 1000, totalIncome: 500, data: [{ date: "07", week: "周四",  details: [{category: '午餐', name: '汉堡王',  pic: require('./img/hamburger.png')}, { category: "咖啡", name: "星巴克", pic: require('./img/eating.png')}, { category: "工资", name: "中国银联", pic: require('./img/money.png')}]}]},
     ];
     return (
         <SectionList 
-        renderSectionHeader={this._dateTransactionGroup}
-        renderItem={this._renderItem}
+        renderSectionHeader={this._monthTransaction}
+        renderItem={this._tradeTransaction}
         sections={sections}
         //ListHeaderComponent={() => <View style={{ backgroundColor: '#25B960', alignItems: 'center', height: 30 }}><Text style={{ fontSize: 18, color: '#ffffff' }}>交易记录</Text></View>}>
         ListFooterComponent={() => <View style={{ backgroundColor: '#25B960', alignItems: 'center', height: 30 }}><Text style={{ fontSize: 18, color: '#ffffff' }}>完</Text></View>}>
